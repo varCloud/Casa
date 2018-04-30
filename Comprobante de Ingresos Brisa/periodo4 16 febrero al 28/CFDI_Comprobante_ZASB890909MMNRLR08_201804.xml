@@ -1,0 +1,37 @@
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nomina12="http://www.sat.gob.mx/nomina12" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd" Version="3.3" Serie="A" Folio="20647" Fecha="2018-02-28T13:08:22" FormaPago="99" NoCertificado="00001000000305763479" SubTotal="5240.60" Descuento="906.71" Moneda="MXN" Total="4333.89" TipoDeComprobante="N" MetodoPago="PUE" LugarExpedicion="06000" Certificado="MIIEfzCCA2egAwIBAgIUMDAwMDEwMDAwMDAzMDU3NjM0NzkwDQYJKoZIhvcNAQEFBQAwggGKMTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMR8wHQYJKoZIhvcNAQkBFhBhY29kc0BzYXQuZ29iLm14MSYwJAYDVQQJDB1Bdi4gSGlkYWxnbyA3NywgQ29sLiBHdWVycmVybzEOMAwGA1UEEQwFMDYzMDAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBEaXN0cml0byBGZWRlcmFsMRQwEgYDVQQHDAtDdWF1aHTDqW1vYzEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTUwMwYJKoZIhvcNAQkCDCZSZXNwb25zYWJsZTogQ2xhdWRpYSBDb3ZhcnJ1YmlhcyBPY2hvYTAeFw0xNDEyMjkyMDUxMDJaFw0xODEyMjkyMDUxMDJaMIHLMSUwIwYDVQQDExxTRUNSRVRBUklBIEVEVUNBQ0lPTiBQVUJMSUNBMSUwIwYDVQQpExxTRUNSRVRBUklBIEVEVUNBQ0lPTiBQVUJMSUNBMSUwIwYDVQQKExxTRUNSRVRBUklBIEVEVUNBQ0lPTiBQVUJMSUNBMSUwIwYDVQQtExxTRVAyMTA5MDU3NzggLyBBQVBNNTcwNTMwN0o3MR4wHAYDVQQFExUgLyBBQVBNNTcwNTMwTURGVkROMDAxDTALBgNVBAsTBEZPTkUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALgA09H2/rkXMpMBsNN5P9lvMtJr9j8s1cY5bWgITpjsAS+theDQW16IS7QYF9xDLaK7A/lIFoTG33DZVjDONpo2e65T2B+48neTWF4A5vFobBqBYNy8A0WZFTM0SmySB70hd/1e+H0g9m3WsIHp456rJ5xoKel4MTxDee83QBwVAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBBQUAA4IBAQC4mstncNl4PV1+E06ykuxdxq5G9SyDi1rAlX2ETcCPsgoUsNOpx0bfh47c5AhQgNLatJuqjibuvyoDaxhqcKKgVbr+shBY6NJtYk3mlFSEdOwciFQQy51cGvyshSerxNtF+tKB7TWKfGgsDwGpOLR03ZMus1pe74Cy9ooL9f6Hu0YQ+vr5jsWRkqkysbW6RTPLYals4p6ei2WOwpx3zPKBrZPCBWa69epxvL+wSrqP/wDOzuCWIdgA07XdHb3mR46e/7ltO2fWP0aQkaOV49pbCP4+XdE0KkFuSBIfdTIdSas7hG8JESjnrOh93dFAXjpjFn+hxbWlnl5qtBKZQfI/" Sello="bCtA9asMYETS+qW7JkqPC55kNM+/HQ/AkBh8Gn4M8JBfS7LWLjxS1YUOtv8vD6nuM6CkOLE5bUBNhUQY8PjFxvnfUVfJFoM4c7SaRJI1bVbvH3cpFBvqXjPUo+cuc7Ww1TCLRNT25XEG658vHPN9ncadKaN0wGM9ZsA1Oy2fGN8=">
+  <cfdi:Emisor Rfc="SEP210905778" Nombre="SECRETARIA DE EDUCACION PUBLICA" RegimenFiscal="603" />
+  <cfdi:Receptor Rfc="ZASB8909099E3" Nombre="ZARAGOZA SALAS BRISEIDA ATZIRI" UsoCFDI="P01" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84111505" Cantidad="1" ClaveUnidad="ACT" Descripcion="Pago de nómina" ValorUnitario="5240.60" Importe="5240.60" Descuento="906.71" />
+  </cfdi:Conceptos>
+  <cfdi:Complemento>
+    <nomina12:Nomina Version="1.2" TipoNomina="O" FechaPago="2018-02-28" FechaInicialPago="2018-02-16" FechaFinalPago="2018-02-28" NumDiasPagados="13" TotalPercepciones="5240.60" TotalDeducciones="906.71">
+      <nomina12:Receptor Curp="ZASB890909MMNRLR08" TipoContrato="99" TipoRegimen="99" NumEmpleado="ZASB8909099E3" PeriodicidadPago="04" ClaveEntFed="MIC" />
+      <nomina12:Percepciones TotalSueldos="5240.60" TotalGravado="5240.60" TotalExento="0">
+        <nomina12:Percepcion TipoPercepcion="038" Clave="ISR" Concepto="ISR" ImporteGravado="73.08" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0CC" Concepto="COMPENSACIN PROVISIONAL COMPACTABLE" ImporteGravado="452.16" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0DC" Concepto="COMPENSACIN DOCENTE Y ADMINISTRATIVA" ImporteGravado="205.01" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0FA" Concepto="FORTALECIMIENTO ADMINISTRATIVO" ImporteGravado="73.81" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0IL" Concepto="INCENTIVO A LABOR" ImporteGravado="31.42" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0P3" Concepto="BONO DE PRODUCTIVIDAD ALTERNO" ImporteGravado="19.02" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="0SD" Concepto="AYUDA SERVICIO DOCENCIA" ImporteGravado="110.53" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="006" Concepto="COMPENSACIN GARANTIZADA" ImporteGravado="31.23" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="001" Clave="007" Concepto="SUELDO BASE" ImporteGravado="3424.16" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="038" Concepto="AYUDA DE DESPENSA" ImporteGravado="199.32" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="044" Concepto="PREVISIN SOCIAL MULTIPLE" ImporteGravado="122.85" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="046" Concepto="AYUDA POR SERVICIOS" ImporteGravado="54.21" ImporteExento="0.0" />
+        <nomina12:Percepcion TipoPercepcion="038" Clave="079" Concepto="ASIGNACIN APOYO DOCENCIA" ImporteGravado="443.8" ImporteExento="0.0" />
+      </nomina12:Percepciones>
+      <nomina12:Deducciones TotalOtrasDeducciones="402.01" TotalImpuestosRetenidos="504.7">
+        <nomina12:Deduccion TipoDeduccion="002" Clave="ISR" Concepto="ISR" Importe="504.7" />
+        <nomina12:Deduccion TipoDeduccion="001" Clave="01L" Concepto="SEGURO DE CESANTIA EN EDAD AVANZADA Y VEJEZ" Importe="209.73" />
+        <nomina12:Deduccion TipoDeduccion="001" Clave="02L" Concepto="SEGURO DE INVALIDEZ Y VIDA" Importe="21.4" />
+        <nomina12:Deduccion TipoDeduccion="001" Clave="03L" Concepto="SERVICIOS SOCIALES Y CULTURALES" Importe="17.12" />
+        <nomina12:Deduccion TipoDeduccion="001" Clave="04L" Concepto="SEGURO DE SALUD" Importe="115.57" />
+        <nomina12:Deduccion TipoDeduccion="019" Clave="058" Concepto="CUOTA SINDICAL" Importe="34.24" />
+        <nomina12:Deduccion TipoDeduccion="004" Clave="077" Concepto="SEGURO DE RETIRO" Importe="3.95" />
+      </nomina12:Deducciones>
+    </nomina12:Nomina>
+    <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="053FEACE-DF65-4903-A52D-843EFDD4BDED" FechaTimbrado="2018-02-28T13:41:25" RfcProvCertif="SAT970701NN3" SelloCFD="bCtA9asMYETS+qW7JkqPC55kNM+/HQ/AkBh8Gn4M8JBfS7LWLjxS1YUOtv8vD6nuM6CkOLE5bUBNhUQY8PjFxvnfUVfJFoM4c7SaRJI1bVbvH3cpFBvqXjPUo+cuc7Ww1TCLRNT25XEG658vHPN9ncadKaN0wGM9ZsA1Oy2fGN8=" NoCertificadoSAT="00001000000403258748" SelloSAT="UPNWM9Og5sjNfsKHGiZPKHoUvzxN0b9t3eLEz42ZudOyOoIBonBzcXnS3WMY6qApDEDfHl/6EuNatda7HMl3kDPZThYK+DzkZKKklB1YFrj9q2++qEke03uDqb4NbO1xOZk8NHjsURFuh3B0ckZZKtpFNtT/Iwej4LIG+SCMPDaSoBe6cGVTLn4XmbX1p2+wo4gZXH+WBn5n+1mP7OQGq+cR76OdXTlHAGYCTb+MGCzD43qZS+juv/Vp2C5q7Bkch7xWmLfiNAIk++43RQbO7Zn8mRMJtU87AfD3/4nYxwLVrIj7xxX9pxHEUx0N9Igv4M6awbtwSIPJkWkT9qGYBw==" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>
