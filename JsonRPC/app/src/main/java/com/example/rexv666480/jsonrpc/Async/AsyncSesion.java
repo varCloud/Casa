@@ -3,6 +3,8 @@ package com.example.rexv666480.jsonrpc.Async;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.rexv666480.jsonrpc.XmlRpc.XMLRPCClient;
+
 import org.alexd.jsonrpc.JSONRPCClient;
 import org.alexd.jsonrpc.JSONRPCException;
 import org.alexd.jsonrpc.JSONRPCParams;
@@ -10,51 +12,54 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Console;
+import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.example.rexv666480.jsonrpc.XmlRpc.XMLRPCClient.FLAGS_FORWARD;
+import static java.util.Arrays.asList;
 
 /**
  * Created by rexv666480 on 02/05/2018.
  */
 
 public class AsyncSesion extends AsyncTask<Void, Void, Void> {
-    String url = "https://demo.odoo.com";
+    String url = "http://45.58.40.30:8068/";
+    String Objetos ="xmlrpc/2/object";
+    String common = "xmlrpc/2/common";
+    //String url="http://demo.odoo.com/xmlrpc/2/object";
+    String db = "demofe";
+    String username = "demo";
+    String password = "$demo123*";
     @Override
     protected Void doInBackground(Void... p) {
-     /*   JSONRPCClient client = JSONRPCClient.create(
-                url+"/start",
-                JSONRPCParams.Versions.VERSION_2);
-        client.setConnectionTimeout(3000);
-        client.setSoTimeout(3000);
-
-        // enable debug to inspect the raw request & response in your logcat output
-        client.setDebug(true);
-        JSONObject params = new JSONObject();
-        //info['host'], info['database'], info['user'], info['password']
-        try {
-            params.put("host", "45.58.46.20:8068");
-            params.put("database", "demofe");
-            params.put("user", "userdemo");
-            params.put("password", "$demo123*");
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         try
         {
-            Object ret = client.call("start", params);
-            Log.d("blue RPC",ret.toString());
-            client = JSONRPCClient.create(
-                    url,
-                    JSONRPCParams.Versions.VERSION_2);
-            ret = client.call(url+"/xmlrpc/2/common");
-            Log.d("blue RPC",ret.toString());
+          List conditions =  asList(asList(
+                    asList("is_company", "=", false),
+                    asList("customer", "=", false)));
 
-        } catch (JSONRPCException e) {
-            e.printStackTrace();
+            Map m = new HashMap();
+
+
+            XMLRPCClient client = new XMLRPCClient(new URL(url+common),FLAGS_FORWARD);
+
+            int user_id = (int) client.call("login", db, username, password);
+
+             //user_id =(int) client.call("execute", new URL(url+common),"authenticate",asList(
+             //       db, username, password, Collections.emptySet()));
+
+            client = new XMLRPCClient(new URL(url+Objetos),FLAGS_FORWARD);
+            Object result = client.call("execute_kw", db, user_id, password, "res.partner", "search", conditions);
+            Log.d("Resultado", (String) result.toString());
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        */
+
         return null;
 
     }

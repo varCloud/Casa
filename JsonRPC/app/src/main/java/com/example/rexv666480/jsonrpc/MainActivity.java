@@ -23,7 +23,6 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    String url = "https://demo.odoo.com/start";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                   XMLRPCClient client = new XMLRPCClient(new URL(url));
-                    client.call()
 
                     new AsyncSesion().execute();
                 }catch (Exception ex)
