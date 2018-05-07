@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorNegro">#000000</color>
+    <color name="colorBlanco">#FFFFFF</color>
+
+    <color name="colorBotonNormal">#37474F</color>
+    <color name="colorBotonPush">#607D8B</color>
+
+    <color name="colorAzul">#4887F2</color>
+    <color name="colorAzul1">#01579B</color>
+    <color name="colorNar">#F57C00</color>
+    <color name="colorNar1">#E65100</color>
+    <color name="colorAmarilo">#FFC400</color>
+    <color name="colorAmarilo1">#FFAB00</color>
+    <color name="colorVerde">#2E7D32</color>
+    <color name="colorVerde1">#1B5E20</color>
+    <color name="colorRosa">#004D40</color>
+</resources>
