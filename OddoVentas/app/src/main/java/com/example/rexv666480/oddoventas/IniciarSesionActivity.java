@@ -1,5 +1,6 @@
 package com.example.rexv666480.oddoventas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCClient;
 import com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCException;
 import com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCServerException;
 import com.example.rexv666480.oddoventas.Utilerias.Loading;
+import com.example.rexv666480.oddoventas.Utilerias.PreferencesManager;
 import com.google.gson.Gson;
 import com.google.gson.internal.ObjectConstructor;
 
@@ -36,6 +38,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
     private OdooConect odoo ;
     private Loading loading;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
             odoo = new OdooConect();
             loading = new Loading(this);
+            context = this;
 
         } catch (MalformedURLException e) {
 
@@ -57,6 +61,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     XMLRPCCallback listener = new XMLRPCCallback() {
                         public void onResponse(long id, Object result) {
                             Log.d("Usuario Obtenido:", String.valueOf(result));
+                            PreferencesManager.saveString(context,"usID",String.valueOf(result));
                             loading.CerrarLoading();
                             Intent intent = new Intent(IniciarSesionActivity.this, MainActivity.class);
                             startActivity(intent);

@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCClient.FLAGS_DEBUG;
 import static com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCClient.FLAGS_FORWARD;
 
 /**
@@ -29,6 +30,11 @@ public class OdooConect {
         return db;
     }
 
+
+    public String getPassword() throws MalformedURLException {
+        return password;
+    }
+
     public URL getUrlCommon() throws MalformedURLException {
         return new URL(url+common);
     }
@@ -42,7 +48,7 @@ public class OdooConect {
     }
 
     public  XMLRPCClient getXmlClienteObject() throws MalformedURLException {
-        return  new XMLRPCClient(getUrlObject() , FLAGS_FORWARD);
+        return  new XMLRPCClient(getUrlObject() , FLAGS_FORWARD | FLAGS_DEBUG);
     }
     public OdooConect() throws MalformedURLException {
 
