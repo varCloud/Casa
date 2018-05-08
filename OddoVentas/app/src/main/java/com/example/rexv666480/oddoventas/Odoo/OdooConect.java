@@ -53,7 +53,6 @@ public class OdooConect {
     public OdooConect() throws MalformedURLException {
 
 
-
     }
 
     /*

@@ -62,7 +62,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                         public void onResponse(long id, Object result) {
                             Log.d("Usuario Obtenido:", String.valueOf(result));
                             PreferencesManager.saveString(context,"usID",String.valueOf(result));
-                            loading.CerrarLoading();
+
                             Intent intent = new Intent(IniciarSesionActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
