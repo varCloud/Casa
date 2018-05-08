@@ -3,9 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_pedidos_venta"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Ventas" />
+            android:title="Peidos de Ventas" />
         <item
             android:id="@+id/nav_clientes"
             android:icon="@drawable/ic_menu_gallery"

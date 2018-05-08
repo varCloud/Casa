@@ -72,6 +72,8 @@ public class ClientesActivity extends AppCompatActivity {
 
             odoo.getXmlClienteObject().callAsync(listener, "execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "res.partner", "search_read", conditions, filtros);
 
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

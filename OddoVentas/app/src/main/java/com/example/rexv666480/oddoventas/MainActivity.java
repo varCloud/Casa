@@ -97,8 +97,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_pedidos_venta) {
+            intent = new Intent(MainActivity.this, PedidoVentasActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_clientes) {
             intent = new Intent(MainActivity.this, ClientesActivity.class);
             startActivity(intent);

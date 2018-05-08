@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.example.rexv666480.oddoventas.Odoo.XmlRpc.XMLRPCClient;
 
+import org.alexd.jsonrpc.JSONRPCClient;
+import org.alexd.jsonrpc.JSONRPCException;
+import org.alexd.jsonrpc.JSONRPCParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,23 +38,34 @@ public class AsyncSesion extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... p) {
         try
         {
-          List conditions =  asList(asList(
-                    asList("is_company", "=", false),
-                    asList("customer", "=", false)));
 
-            Map m = new HashMap();
+            JSONRPCClient client = JSONRPCClient.create(
+                    "http://45.58.40.30:8068/xmlrpc/2/object",
+                    JSONRPCParams.Versions.VERSION_2);
+            client.setConnectionTimeout(3000);
+            client.setSoTimeout(3000);
+            // enable debug to inspect the raw request & response in your logcat output
+            client.setDebug(true);
+
+            try
+            {
+                List conditions = asList(asList(
+                        asList("state", "=", "draft")
+                        //asList("customer", "=", true)
+                ));
 
 
-            XMLRPCClient client = new XMLRPCClient(new URL(url+common),FLAGS_FORWARD);
+                Map<String, List> filtros = new HashMap() {{
+                    put("fields", asList("message_needaction", "name", "date_order", "partner_id", "user_id", "amount_total", "currency_id", "invoice_status", "state"));
+                    put("limit", 5);
+                }};
 
-            int user_id = (int) client.call("login", db, username, password);
+                Object result = client.call("call", db, 5,password, "sale.order", "search_read",conditions,filtros);
+                Log.d("Resultado",  result.toString());
+            } catch (JSONRPCException e) {
+                e.printStackTrace();
+            }
 
-             //user_id =(int) client.call("execute", new URL(url+common),"authenticate",asList(
-             //       db, username, password, Collections.emptySet()));
-
-            client = new XMLRPCClient(new URL(url+Objetos),FLAGS_FORWARD);
-            Object result = client.call("execute_kw", db, user_id, password, "res.partner", "search", conditions);
-            Log.d("Resultado", (String) result.toString());
 
         }
         catch (Exception e) {
