@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".ClientesActivity" />
         <activity android:name=".ProductosActivity" />
-        <activity android:name=".PedidoVentasActivity"></activity>
+        <activity android:name=".PedidoVentasActivity" />
+        <activity android:name=".AgregarPedidoVentaActivity"></activity>
     </application>
 
 </manifest>

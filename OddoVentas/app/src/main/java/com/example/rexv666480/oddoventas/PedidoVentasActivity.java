@@ -3,9 +3,14 @@ package com.example.rexv666480.oddoventas;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ExpandedMenuView;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.rexv666480.oddoventas.Adapters.AdapterPedidoVenta;
@@ -46,6 +51,14 @@ public class PedidoVentasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido_ventas);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAgregarPedidoVenta);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         context = this;
         activity = this;
         try {
@@ -55,6 +68,17 @@ public class PedidoVentasActivity extends AppCompatActivity {
             loading.ShowLoading("Cargando ...");
             lv = (ListView) findViewById(R.id.LvPedidoVenta);
             ObtenerPedidos();
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                   try{
+                       PedidoVenta p = (PedidoVenta) lv.getItemAtPosition(i);
+                       Log.d(TAG,p.getName());
+                   } catch(Exception ex) {
+                       ex.printStackTrace();
+                   }
+                }
+            });
 
         } catch (MalformedURLException e) {
             loading.CerrarLoading();

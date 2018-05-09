@@ -72,8 +72,17 @@ public class AdapterPedidoVenta  extends BaseAdapter {
         PedidoVenta p = items.get(position);
         txtNombre.setText(p.getPartner_id()[1].toString());
         txtTotal.setText(p.getAmount_total().toString());
+        switch (p.getInvoice_status()){
+            case "no":
+                txtEstatus.setText("Nada que facturar");
+                break;
+            case "to invoice":
+                txtEstatus.setText("A facturar");
+                break;
+
+        }
         txtNoPedido.setText(p.getName()+" "+p.getDate_order());
-        txtEstatus.setText(p.getInvoice_status());
+        //txtEstatus.setText(p.getInvoice_status());
         return  v;
     }
 }
