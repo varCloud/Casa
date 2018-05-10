@@ -2,6 +2,7 @@ package com.example.rexv666480.oddoventas;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -55,8 +56,10 @@ public class PedidoVentasActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(PedidoVentasActivity.this, AgregarPedidoVentaActivity.class);
+                startActivity(intent);
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
         context = this;
@@ -122,6 +125,7 @@ public class PedidoVentasActivity extends AppCompatActivity {
                     if (pedidosVentas != null) {
                         AdapterPedidoVenta adapter = new AdapterPedidoVenta(activity, pedidosVentas);
                         lv.setAdapter(adapter);
+                        
                     }
                 }
                 loading.CerrarLoading();
