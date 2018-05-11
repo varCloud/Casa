@@ -19,6 +19,15 @@ public class Cliente {
     private Object[] country_id;
 
     public Cliente() {
+         id= 0;
+         display_name="";
+         email="";
+         city="";
+         phone="";
+         street="";
+         image_small="";
+        country_id = new Object[1];
+
     }
 
     public Cliente(int id, String display_name, String email, String city, String phone, String street, String image_small, Object[] country_id) {
@@ -94,5 +103,11 @@ public class Cliente {
 
     public void setCountry_id(Object[] country_id) {
         this.country_id = country_id;
+    }
+
+    @Override
+    public String toString()
+    {
+        return display_name;
     }
 }

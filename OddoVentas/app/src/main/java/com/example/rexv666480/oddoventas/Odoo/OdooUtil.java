@@ -1,5 +1,9 @@
 package com.example.rexv666480.oddoventas.Odoo;
 
+import com.example.rexv666480.oddoventas.Entidades.Cliente;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,5 +59,33 @@ public class OdooUtil {
             res = (Object[]) map.get(fieldName);
         }
         return res;
+    }
+
+    public  static List<Cliente> ObtenerCllientes(Object result)
+    {
+        List<Cliente> clientes = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                clientes = new ArrayList<>();
+                Cliente c;
+                for (Object object : objects) {
+                    c = new Cliente();
+                    c.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    c.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    c.setStreet(OdooUtil.getString((Map<String, Object>) object, "street"));
+                    c.setEmail(OdooUtil.getString((Map<String, Object>) object, "email"));
+                    c.setCity(OdooUtil.getString((Map<String, Object>) object, "city"));
+                    c.setImage_small(OdooUtil.getString((Map<String, Object>) object, "image_small"));
+                    c.setCountry_id(OdooUtil.getTupla((Map<String, Object>) object, "country_id"));
+                    clientes.add(c);
+                }
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return  clientes;
+
     }
 }

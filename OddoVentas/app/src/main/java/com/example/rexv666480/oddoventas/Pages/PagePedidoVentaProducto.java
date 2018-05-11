@@ -7,8 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.rexv666480.oddoventas.R;
+
+import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +31,16 @@ public class PagePedidoVentaProducto extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    @BindView(R.id.txtContra)
+    TextView txtContra;
+
+    @BindView(R.id.txtUsuario)
+    TextView txtUsuario;
+
+    @BindView(R.id.btnIniciarSesion)
+    Button IniciarSesion;
 
     public PagePedidoVentaProducto() {
         // Required empty public constructor
