@@ -65,6 +65,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(IniciarSesionActivity.this, MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         public void onError(long id, XMLRPCException error) {
                            error.printStackTrace();

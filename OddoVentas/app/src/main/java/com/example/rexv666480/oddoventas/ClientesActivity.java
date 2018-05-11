@@ -49,9 +49,8 @@ public class ClientesActivity extends AppCompatActivity {
             odoo = new OdooConect();
             loading = new Loading(context);
             user_id = Integer.parseInt(PreferencesManager.loadString(context, "usID", "0"));
-            lvClientes = (ListView) findViewById(R.id.LvPedidoVenta);
-            loading.ShowLoading("Cargando ...");
-
+            lvClientes = (ListView) findViewById(R.id.LvClientes);
+            ObtenerClientes();
 
 
 
@@ -61,20 +60,25 @@ public class ClientesActivity extends AppCompatActivity {
     }
 
 
+
+
     public void ObtenerClientes()
     {
-        AsyncTask asyncTask = new AsyncTask<Void,Void,Object>() {
+        loading.ShowLoading("Cargando...");
+
+        AsyncTask asyncTask = new AsyncTask<Object,Object,Object>() {
+
             @Override
-            protected Object doInBackground(Void... params) {
+            protected Object doInBackground(Object... params) {
                 Object result=null;
                 try {
                     List conditions = asList(asList(
-                            asList("is_company", "=", false),
-                            asList("customer", "=", false)));
+                            asList("parent_id", "=", false),
+                            asList("customer", "=", true)));
 
                     Map<String, List> filtros = new HashMap() {{
-                        put("fields", asList("name", "country_id", "street", "comment"));
-                        put("limit", 5);
+                        put("fields", asList("email","id","image_small","phone","city","display_name","country_id", "street", "comment"));
+                        /*put("limit", 5);*/
                     }};
 
                     result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "res.partner", "search_read", conditions, filtros);
@@ -104,6 +108,7 @@ public class ClientesActivity extends AppCompatActivity {
 
     public List<Cliente> ObtenerClientes(Object result)
     {
+
         List<Cliente> clientes = null;
         try{
             Object[] objects = (Object[]) result;
@@ -112,13 +117,13 @@ public class ClientesActivity extends AppCompatActivity {
                 Cliente c;
                 for (Object object : objects) {
                     c = new Cliente();
-                    String name= OdooUtil.getString((Map<String, Object>) object, "name");
-                    boolean is_company= OdooUtil.getBoolean((Map<String, Object>) object, "is_company");
-                    String street = OdooUtil.getString((Map<String, Object>) object, "street");
-                    int id= OdooUtil.getInteger((Map<String, Object>) object, "id");
-                    Object[] tuple =  OdooUtil.getTupla((Map<String, Object>) object, "country_id");
-                    c.setId(String.valueOf(id));
-                    c.setName(name);
+                    c.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    c.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    c.setStreet(OdooUtil.getString((Map<String, Object>) object, "street"));
+                    c.setEmail(OdooUtil.getString((Map<String, Object>) object, "email"));
+                    c.setCity(OdooUtil.getString((Map<String, Object>) object, "city"));
+                    c.setImage_small(OdooUtil.getString((Map<String, Object>) object, "image_small"));
+                    c.setCountry_id(OdooUtil.getTupla((Map<String, Object>) object, "country_id"));
                     clientes.add(c);
                 }
             }

@@ -125,7 +125,7 @@ public class PedidoVentasActivity extends AppCompatActivity {
                     if (pedidosVentas != null) {
                         AdapterPedidoVenta adapter = new AdapterPedidoVenta(activity, pedidosVentas);
                         lv.setAdapter(adapter);
-                        
+
                     }
                 }
                 loading.CerrarLoading();

@@ -2,10 +2,14 @@ package com.example.rexv666480.oddoventas.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
@@ -34,7 +38,7 @@ public  class AdapterClientes extends BaseAdapter {
 
 
     @BindView(R.id.imageCliente)
-    TextView imageCliente;
+    ImageView imageCliente;
 
 
     protected Activity activity;
@@ -70,8 +74,22 @@ public  class AdapterClientes extends BaseAdapter {
             v = inf.inflate(R.layout.listview_item_clientes, null);
         }
         ButterKnife.bind(this,v);
-        Cliente c = items.get(position);
-
+        try {
+            Cliente c = items.get(position);
+            txtCorreoCliente.setText(c.getEmail());
+            txtDireccionCliente.setText(c.getCountry_id()[1].toString()+" "+c.getStreet());
+            txtNombreCliente.setText(c.getDisplay_name());
+            if (c.getImage_small() != null) {
+                if(!c.getImage_small().equals("")) {
+                    byte[] data = Base64.decode(c.getImage_small(), Base64.DEFAULT);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    imageCliente.setImageBitmap(bitmap);
+                }
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
         return  v;
     }
 }

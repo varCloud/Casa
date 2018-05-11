@@ -9,16 +9,19 @@ import java.util.Map;
 
 public class Cliente {
 
-    private String id;
+    private int id;
     private String display_name;
     private String email;
     private String city;
     private String phone;
     private String street;
-    private byte[] image_small;
+    private String image_small;
     private Object[] country_id;
 
-    public Cliente(String id, String display_name, String email, String city, String phone, String street, byte[] image_small, Object[] country_id) {
+    public Cliente() {
+    }
+
+    public Cliente(int id, String display_name, String email, String city, String phone, String street, String image_small, Object[] country_id) {
         this.id = id;
         this.display_name = display_name;
         this.email = email;
@@ -29,11 +32,11 @@ public class Cliente {
         this.country_id = country_id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,11 +80,11 @@ public class Cliente {
         this.street = street;
     }
 
-    public byte[] getImage_small() {
+    public String getImage_small() {
         return image_small;
     }
 
-    public void setImage_small(byte[] image_small) {
+    public void setImage_small(String image_small) {
         this.image_small = image_small;
     }
 
