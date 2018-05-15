@@ -1,6 +1,7 @@
 package com.example.rexv666480.oddoventas.Odoo;
 
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
+import com.example.rexv666480.oddoventas.Entidades.Producto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,37 @@ public class OdooUtil {
             ex.printStackTrace();
         }
         return  clientes;
+    }
 
+    public  static List<Producto> ObtenerProductos(Object result)
+    {
+
+        List<Producto> productos = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                productos = new ArrayList<>();
+                Producto producto;
+                for (Object object : objects) {
+                    producto = new Producto();
+                    producto.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
+                    producto.setCurrency_id(OdooUtil.getTupla((Map<String, Object>) object, "currency_id"));
+                    producto.setProduct_variant_count(OdooUtil.getString((Map<String, Object>) object, "product_variant_count"));
+                    producto.setLst_price(OdooUtil.getDouble((Map<String, Object>) object, "lst_price"));
+                    producto.setQty_available(OdooUtil.getDouble((Map<String, Object>) object, "qty_available"));
+                    producto.setType(OdooUtil.getString((Map<String, Object>) object, "type"));
+                    producto.setProduct_variant_ids(OdooUtil.getString((Map<String, Object>) object, "product_variant_ids"));
+                    producto.setImage_small(OdooUtil.getString((Map<String, Object>) object, "image_small"));
+                    producto.setUom_id(OdooUtil.getTupla((Map<String, Object>) object, "uom_id"));
+                    producto.setDefault_code(OdooUtil.getString((Map<String, Object>) object, "default_code"));
+                    producto.set__last_update(OdooUtil.getString((Map<String, Object>) object, "__last_update"));
+                    productos.add(producto);
+                }
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return  productos;
     }
 }

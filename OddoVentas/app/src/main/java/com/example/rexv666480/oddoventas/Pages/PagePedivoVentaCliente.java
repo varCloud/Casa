@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import com.example.rexv666480.oddoventas.Adapters.AdapterClientes;
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
+import com.example.rexv666480.oddoventas.Entidades.Producto;
 import com.example.rexv666480.oddoventas.Odoo.OdooConect;
 import com.example.rexv666480.oddoventas.Odoo.OdooUtil;
 import com.example.rexv666480.oddoventas.R;
@@ -46,6 +47,8 @@ public class PagePedivoVentaCliente extends Fragment {
     @BindView(R.id.cbClientes)
     Spinner cbClientes;
 
+    @BindView(R.id.cbProductos)
+    Spinner cbProductos;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -145,6 +148,7 @@ public class PagePedivoVentaCliente extends Fragment {
                         if (clientes != null) {
                             ArrayAdapter<Cliente> myAdapter = new ArrayAdapter<Cliente>(getContext(), android.R.layout.simple_spinner_item, clientes);
                             cbClientes.setAdapter(myAdapter);
+                            ObtenerProductos();
                         }
                     }
                 }catch (Exception ex)
@@ -169,16 +173,25 @@ public class PagePedivoVentaCliente extends Fragment {
                 Object result=null;
                 try {
                     List conditions = asList(asList(
-                            asList("sale_ok", "=", true),
-                            asList("customer", "=", true)
+                            asList("sale_ok", "=", true)
                     ));
 
                     Map<String, List> filtros = new HashMap() {{
-                        put("fields", asList("email","id","image_small","phone","city","display_name","country_id", "street", "comment"));
+                        put("fields", asList("name",
+                                "currency_id",
+                                "product_variant_count",
+                                "lst_price",
+                                "qty_available",
+                                "type",
+                                "product_variant_ids",
+                                "image_small",
+                                "uom_id",
+                                "default_code",
+                                "__last_update"));
                         /*put("limit", 5);*/
                     }};
 
-                    result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "product.product", "name_search", conditions, filtros);
+                    result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "product.template", "search_read", conditions, filtros);
                 }catch (Exception ex)
                 {
                     loading.CerrarLoading();
@@ -191,9 +204,9 @@ public class PagePedivoVentaCliente extends Fragment {
             protected void onPostExecute(Object result) {
                 try {
                     if (result != null) {
-                        List<Cliente> clientes = OdooUtil.ObtenerCllientes(result);
+                        List<Producto> clientes = OdooUtil.ObtenerProductos(result);
                         if (clientes != null) {
-                            ArrayAdapter<Cliente> myAdapter = new ArrayAdapter<Cliente>(getContext(), android.R.layout.simple_spinner_item, clientes);
+                            ArrayAdapter<Producto> myAdapter = new ArrayAdapter<Producto>(getContext(), android.R.layout.simple_spinner_item, clientes);
                             cbClientes.setAdapter(myAdapter);
                         }
                     }
