@@ -158,5 +158,53 @@ public class PagePedivoVentaCliente extends Fragment {
         asyncTask.execute();
     }
 
+    public void ObtenerProductos()
+    {
+        loading.ShowLoading("Cargando...");
 
+        AsyncTask asyncTask = new AsyncTask<Object,Object,Object>() {
+
+            @Override
+            protected Object doInBackground(Object... params) {
+                Object result=null;
+                try {
+                    List conditions = asList(asList(
+                            asList("sale_ok", "=", true),
+                            asList("customer", "=", true)
+                    ));
+
+                    Map<String, List> filtros = new HashMap() {{
+                        put("fields", asList("email","id","image_small","phone","city","display_name","country_id", "street", "comment"));
+                        /*put("limit", 5);*/
+                    }};
+
+                    result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "product.product", "name_search", conditions, filtros);
+                }catch (Exception ex)
+                {
+                    loading.CerrarLoading();
+                    ex.printStackTrace();
+                }
+                return  result;
+            }
+
+            @Override
+            protected void onPostExecute(Object result) {
+                try {
+                    if (result != null) {
+                        List<Cliente> clientes = OdooUtil.ObtenerCllientes(result);
+                        if (clientes != null) {
+                            ArrayAdapter<Cliente> myAdapter = new ArrayAdapter<Cliente>(getContext(), android.R.layout.simple_spinner_item, clientes);
+                            cbClientes.setAdapter(myAdapter);
+                        }
+                    }
+                }catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                loading.CerrarLoading();
+            }
+        };
+
+        asyncTask.execute();
+    }
 }
