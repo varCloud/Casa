@@ -114,7 +114,7 @@ public class PagePedivoVentaCliente extends Fragment {
 
     public void ObtenerClientes()
     {
-        loading.ShowLoading("Cargando...");
+        loading.ShowLoading("Cargando Clientes...");
 
         AsyncTask asyncTask = new AsyncTask<Object,Object,Object>() {
 
@@ -155,16 +155,17 @@ public class PagePedivoVentaCliente extends Fragment {
                 {
                     ex.printStackTrace();
                 }
-                loading.CerrarLoading();
             }
         };
 
         asyncTask.execute();
     }
 
+
+
     public void ObtenerProductos()
     {
-        loading.ShowLoading("Cargando...");
+        loading.ShowLoading("Cargando Productos...");
 
         AsyncTask asyncTask = new AsyncTask<Object,Object,Object>() {
 
@@ -177,21 +178,21 @@ public class PagePedivoVentaCliente extends Fragment {
                     ));
 
                     Map<String, List> filtros = new HashMap() {{
-                        put("fields", asList("name",
-                                "currency_id",
-                                "product_variant_count",
+                        put("fields", asList("default_code",
+                                "name",
+                                "attribute_value_ids",
                                 "lst_price",
+                                "price",
                                 "qty_available",
-                                "type",
-                                "product_variant_ids",
-                                "image_small",
+                                "virtual_available",
                                 "uom_id",
-                                "default_code",
-                                "__last_update"));
+                                "barcode",
+                                "product_tmpl_id",
+                                "active"));
                         /*put("limit", 5);*/
                     }};
 
-                    result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "product.template", "search_read", conditions, filtros);
+                    result=  odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "product.product", "search_read", conditions, filtros);
                 }catch (Exception ex)
                 {
                     loading.CerrarLoading();
@@ -204,10 +205,10 @@ public class PagePedivoVentaCliente extends Fragment {
             protected void onPostExecute(Object result) {
                 try {
                     if (result != null) {
-                        List<Producto> clientes = OdooUtil.ObtenerProductos(result);
-                        if (clientes != null) {
-                            ArrayAdapter<Producto> myAdapter = new ArrayAdapter<Producto>(getContext(), android.R.layout.simple_spinner_item, clientes);
-                            cbClientes.setAdapter(myAdapter);
+                        List<Producto> productos = OdooUtil.ObtenerProductos(result);
+                        if (productos != null) {
+                            ArrayAdapter<Producto> myAdapter = new ArrayAdapter<Producto>(getContext(), android.R.layout.simple_spinner_item, productos);
+                            cbProductos.setAdapter(myAdapter);
                         }
                     }
                 }catch (Exception ex)

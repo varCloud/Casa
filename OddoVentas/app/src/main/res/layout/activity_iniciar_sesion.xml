@@ -11,10 +11,11 @@
         android:id="@+id/contenedor"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/LinearImage"
@@ -63,6 +64,7 @@
                     android:ems="10"
                     android:hint="@string/usuario"
                     android:inputType="text"
+                    android:textColor="@color/colorPrimary"
                     android:text="demo"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -106,7 +108,7 @@
 
         <LinearLayout
             android:id="@+id/botones"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
@@ -114,13 +116,13 @@
 
             <Button
                 android:id="@+id/btnIniciarSesion"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/contenedor"
                 android:text="@string/iniciar"
                 android:textColor="@color/colorBlanco"
-                android:theme="@style/Botones" />
+                android:textAllCaps="true"
+                style="@style/GreenButton" />
 
         </LinearLayout>
     </LinearLayout>

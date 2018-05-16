@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.rexv666480.oddoventas.Entidades.Producto;
 import com.example.rexv666480.oddoventas.Utilerias.PreferencesManager;
 
 public class MainActivity extends AppCompatActivity
@@ -104,7 +105,9 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(MainActivity.this, ClientesActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_productos) {
+            intent = new Intent(MainActivity.this, ProductosActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

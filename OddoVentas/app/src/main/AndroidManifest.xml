@@ -18,16 +18,25 @@
         <activity
             android:name=".IniciarSesionActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".ClientesActivity" />
+        <activity
+            android:name=".ClientesActivity"
+            android:label="Clientes"
+            android:theme="@style/AppTheme" />
         <activity android:name=".ProductosActivity" />
         <activity android:name=".PedidoVentasActivity" />
-        <activity android:name=".AgregarPedidoVentaActivity"></activity>
+        <activity android:name=".AgregarPedidoVentaActivity" />
+        <activity android:name=".SplashActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+
+
     </application>
 
 </manifest>
