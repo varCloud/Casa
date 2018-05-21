@@ -46,10 +46,10 @@
                         android:layout_weight="1" />
 
                     <View
+                        style="@style/Divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -74,10 +74,10 @@
                         android:layout_weight="1" />
 
                     <View
+                        style="@style/Divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
 
 
                 </LinearLayout>
@@ -104,10 +104,11 @@
                         android:inputType="date" />
 
                     <View
+                        style="@style/DividerBlanco"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +125,7 @@
                         android:text="Cantidad Pedida" />
 
                     <EditText
-                        android:id="@+id/eTxtFechaCaducidad"
+                        android:id="@+id/txtCantidadPedido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -132,10 +133,10 @@
                         android:inputType="date" />
 
                     <View
+                        style="@style/Divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
 
 
                 </LinearLayout>
@@ -155,17 +156,17 @@
 
                     <Spinner
 
-                        android:id="@+id/spTarifa"
+                        android:id="@+id/cbUnidadMedida"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1" />
 
                     <View
+                        style="@style/Divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,20 +188,18 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" />
 
-
-                    <Spinner
-
-                        android:id="@+id/spTerminosPago"
+                    <EditText
+                        android:id="@+id/txtPrecioUnitario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1" />
+                        android:layout_marginTop="18dp"
+                        android:inputType="numberDecimal" />
 
                     <View
+                        style="@style/DividerBlanco"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -225,10 +224,10 @@
                         android:layout_weight="1" />
 
                     <View
+                        style="@style/Divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -251,10 +250,11 @@
                         android:inputType="numberDecimal" />
 
                     <View
+                        style="@style/DividerBlanco"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -277,12 +277,39 @@
                         android:inputType="numberDecimal" />
 
                     <View
+                        style="@style/DividerBlanco"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorAccent" />
+                        android:layout_marginTop="10dp" />
+
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/botones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAgregarProducto"
+                        style="@style/GreenButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/contenedor"
+                        android:text="Agregar Producto"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorBlanco" />
+
+                    <View
+                        style="@style/DividerBlanco"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

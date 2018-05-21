@@ -58,7 +58,6 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PagePedivoVentaCliente(), "Infomación Cliente");
-        adapter.addFragment(new PagePedidoVentaProducto(), "Informacion Producto");
         adapter.addFragment(new PagePedidoVentaProducto(), "Producto Agregados");
         viewPager.setAdapter(adapter);
     }

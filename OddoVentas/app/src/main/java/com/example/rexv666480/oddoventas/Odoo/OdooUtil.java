@@ -1,8 +1,12 @@
 package com.example.rexv666480.oddoventas.Odoo;
 
+import android.util.Log;
+
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
+import com.example.rexv666480.oddoventas.Entidades.Impuesto;
 import com.example.rexv666480.oddoventas.Entidades.Producto;
 import com.example.rexv666480.oddoventas.Entidades.TemplateProducto;
+import com.example.rexv666480.oddoventas.Entidades.UnidadMedida;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -180,5 +184,70 @@ public class OdooUtil {
             ex.printStackTrace();
         }
         return  productos;
+    }
+
+    public  static List<UnidadMedida> ObtenerUnidadesMedida(Object result)
+    {
+        /*
+            private String display_name;
+            private Integer id;
+            private Object[]  category_id;
+            private String name;
+
+        */
+        List<UnidadMedida> unidadesMedida = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                unidadesMedida = new ArrayList<>();
+                UnidadMedida unidadMedida;
+                for (Object object : objects) {
+                    unidadMedida = new UnidadMedida();
+                    unidadMedida.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    unidadMedida.setCategory_id(OdooUtil.getTupla((Map<String, Object>) object, "category_id"));
+                    unidadMedida.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    unidadMedida.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
+                    unidadesMedida.add(unidadMedida);
+                }
+            }
+        }catch (Exception ex)
+        {
+            Log.d("errores: ",ex.getMessage());
+        }
+        return  unidadesMedida;
+    }
+
+
+    public  static List<Impuesto> ObtenerImpuestos(Object result)
+    {
+        /*
+            private  Integer id;
+            private String display_name;
+            private String description;
+            private Double amount;
+            private String amount_type;
+
+        */
+        List<Impuesto> impuestos = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                impuestos = new ArrayList<>();
+                Impuesto impuesto;
+                for (Object object : objects) {
+                    impuesto = new Impuesto();
+                    impuesto.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    impuesto.setAmount(OdooUtil.getDouble((Map<String, Object>) object, "amount"));
+                    impuesto.setAmount_type(OdooUtil.getString((Map<String, Object>) object, "amount_type"));
+                    impuesto.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    impuesto.setDescription(OdooUtil.getString((Map<String, Object>) object, "description"));
+                    impuestos.add(impuesto);
+                }
+            }
+        }catch (Exception ex)
+        {
+            Log.d("errores: ",ex.getMessage());
+        }
+        return  impuestos;
     }
 }

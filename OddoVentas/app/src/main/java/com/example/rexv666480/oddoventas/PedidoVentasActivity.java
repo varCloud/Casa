@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.example.rexv666480.oddoventas.Adapters.AdapterPedidoVenta;
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
 import com.example.rexv666480.oddoventas.Entidades.PedidoVenta;
+import com.example.rexv666480.oddoventas.Entidades.UnidadMedida;
 import com.example.rexv666480.oddoventas.Odoo.Async.AsyncSesion;
 import com.example.rexv666480.oddoventas.Odoo.OdooConect;
 import com.example.rexv666480.oddoventas.Odoo.OdooUtil;
@@ -161,6 +162,8 @@ public class PedidoVentasActivity extends AppCompatActivity {
         }
         return pedidos;
     }
+
+
 
 }
 

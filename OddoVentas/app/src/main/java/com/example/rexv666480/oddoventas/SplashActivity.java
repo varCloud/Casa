@@ -10,21 +10,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_DISPLAY_LENGTH = 18000;
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
     private View mCardFrontLayout;
     private View mCardBackLayout;
     private AnimatorSet mSetRightOut;
     private AnimatorSet mSetLeftIn;
     private boolean mIsBackVisible = false;
 
-    @BindView(R.id.imageO1)
-    ImageView imageO1;
+    @BindView(R.id.imageGris)
+    ImageView imageGris;
+
+    @BindView(R.id.imageRosa)
+    ImageView imageRosa;
+
+    @BindView(R.id.imageO3)
+    ImageView imageO3;
+
+    @BindView(R.id.card_logo)
+    FrameLayout card_logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,18 +53,26 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_DISPLAY_LENGTH);
 
-       /* Animation startRotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.android_rotate_animation);
-        imageO1.startAnimation(startRotateAnimation);
+       /*
         */
+
         findViews();
         loadAnimations();
         changeCameraDistance();
         flipCard();
+        Animation fadeout = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadeout);
+        imageRosa.startAnimation(fadeout);
+        imageGris.setVisibility(View.GONE);
+        imageRosa.setVisibility(View.INVISIBLE);
+        imageGris.startAnimation(fadeout);
+
         try {
-            Thread.sleep(5000);
-            flipCard();
-            Thread.sleep(5000);
-            flipCard();
+
+            Thread.sleep(1000);
+            imageO3.setVisibility(View.VISIBLE);
+            Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadein);
+            imageO3.startAnimation(fadeIn);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
