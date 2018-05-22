@@ -35,14 +35,14 @@
                 android:textColor="@color/colorNegro" />
 
             <TextView
-                android:id="@+id/txtDireccionCliente"
+                android:id="@+id/txtCantidadPedido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Cantidad" />
 
             <TextView
-                android:id="@+id/txtCorreoCliente"
+                android:id="@+id/txtPrecioUnitario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

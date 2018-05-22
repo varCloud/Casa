@@ -30,6 +30,11 @@ public class Cliente {
 
     }
 
+    public Cliente(int id, String display_name) {
+        this.id = id;
+        this.display_name = display_name;
+    }
+
     public Cliente(int id, String display_name, String email, String city, String phone, String street, String image_small, Object[] country_id) {
         this.id = id;
         this.display_name = display_name;

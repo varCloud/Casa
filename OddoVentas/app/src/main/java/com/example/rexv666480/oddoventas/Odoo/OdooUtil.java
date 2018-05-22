@@ -75,6 +75,7 @@ public class OdooUtil {
             if (objects.length > 0) {
                 clientes = new ArrayList<>();
                 Cliente c;
+                clientes.add(new Cliente(-1 , "Selecciona"));
                 for (Object object : objects) {
                     c = new Cliente();
                     c.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
@@ -115,6 +116,7 @@ public class OdooUtil {
             Object[] objects = (Object[]) result;
             if (objects.length > 0) {
                 productos = new ArrayList<>();
+                productos.add(new Producto(-1,"Selecciona"));
                 Producto producto;
                 for (Object object : objects) {
                     producto = new Producto();

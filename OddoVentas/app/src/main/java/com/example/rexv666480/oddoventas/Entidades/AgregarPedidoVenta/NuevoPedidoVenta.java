@@ -1,5 +1,10 @@
-package com.example.rexv666480.oddoventas.Entidades;
+package com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta;
 
+import android.widget.ListView;
+
+import com.example.rexv666480.oddoventas.Entidades.Cliente;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,14 +14,10 @@ import java.util.List;
 public class NuevoPedidoVenta {
 
     private Cliente cliente;
-    private List<Producto> productos;
+    private List<NuevoProducto> productos;
 
     public NuevoPedidoVenta() {
-    }
-
-    public NuevoPedidoVenta(Cliente cliente, List<Producto> productos) {
-        this.cliente = cliente;
-        this.productos = productos;
+        this.productos = new ArrayList<>();
     }
 
     public Cliente getCliente() {
@@ -27,11 +28,11 @@ public class NuevoPedidoVenta {
         this.cliente = cliente;
     }
 
-    public List<Producto> getProductos() {
+    public List<NuevoProducto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<NuevoProducto> productos) {
         this.productos = productos;
     }
 }

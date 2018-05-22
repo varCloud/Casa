@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.rexv666480.oddoventas.Adapters.AdapterClientes;
+import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoPedidoVenta;
+import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoProducto;
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
 import com.example.rexv666480.oddoventas.Entidades.Impuesto;
 import com.example.rexv666480.oddoventas.Entidades.Producto;
@@ -83,10 +86,13 @@ public class PagePedivoVentaCliente extends Fragment  {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private List<Producto> productos;
-    private List<UnidadMedida> unidadesMedida;
-    private List<Cliente> clientes;
-    private List<Impuesto> impuestos;
+
+    public List<Producto> productos;
+    public List<UnidadMedida> unidadesMedida;
+    public List<Cliente> clientes;
+    public List<Impuesto> impuestos;
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -94,9 +100,42 @@ public class PagePedivoVentaCliente extends Fragment  {
     private OdooConect odoo;
     private Loading loading;
     private int user_id = 0;
+    public NuevoProducto nuevoProducto;
 
     public PagePedivoVentaCliente() {
         // Required empty public constructor
+    }
+
+    public Spinner getCbClientes() {
+        return cbClientes;
+    }
+
+    public Spinner getCbProductos() {
+        return cbProductos;
+    }
+
+    public Spinner getCbUnidadMedida() {
+        return cbUnidadMedida;
+    }
+
+    public Spinner getCbImpuestos() {
+        return cbImpuestos;
+    }
+
+    public EditText getTxtPrecioUnitario() {
+        return txtPrecioUnitario;
+    }
+
+    public EditText getTxtDescuento() {
+        return txtDescuento;
+    }
+
+    public EditText getTxtSubTotal() {
+        return txtSubTotal;
+    }
+
+    public EditText getTxtCantidadPedido() {
+        return txtCantidadPedido;
     }
 
     /**
@@ -135,6 +174,7 @@ public class PagePedivoVentaCliente extends Fragment  {
 
 
         try{
+
             user_id = Integer.parseInt(PreferencesManager.loadString(getContext(), "usID", "0"));
             odoo = new OdooConect();
             loading = new Loading(getContext());
@@ -144,14 +184,14 @@ public class PagePedivoVentaCliente extends Fragment  {
             btnAgregarProducto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Log.d("Click","Click en la pagina");
                 }
             });
 
             cbProductos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                     //ObtenerUnidadMedidas(productos.get(position).getUom_id()[0]);
                 }
 
@@ -170,7 +210,7 @@ public class PagePedivoVentaCliente extends Fragment  {
 
 
     ///////////////////////////////////////////////////CARGA DE INFORMACION POR DEFAULT//////////////////////////////////////////////////////////////////////////
-    public void ObtenerClientes()
+    private void ObtenerClientes()
     {
         loading.ShowLoading("Cargando Clientes...");
 
@@ -219,7 +259,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         asyncTask.execute();
     }
 
-    public void ObtenerProductos()
+    private void ObtenerProductos()
     {
         loading.ShowLoading("Cargando Productos...");
 
@@ -279,7 +319,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         asyncTask.execute();
     }
 
-    public void ObtenerUnidadMedidas()
+    private void ObtenerUnidadMedidas()
     {
         loading.ShowLoading("Cargando Unidade de Medida...");
 
@@ -330,7 +370,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         asyncTask.execute();
     }
 
-    public void ObtenerImpuestos()
+    private void ObtenerImpuestos()
     {
         loading.ShowLoading("Cargando Impuestos...");
 
@@ -381,7 +421,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         asyncTask.execute();
     }
 
-    public  void InitTextChange()
+    private  void InitTextChange()
     {
         txtDescuento.addTextChangedListener(new TextWatcher() {
             @Override
@@ -438,7 +478,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         });
     }
 
-    public  void CalcularSubtotal()
+    private  void CalcularSubtotal()
     {
         try {
             if (! TextUtils.isEmpty(txtCantidadPedido.getText()) &&

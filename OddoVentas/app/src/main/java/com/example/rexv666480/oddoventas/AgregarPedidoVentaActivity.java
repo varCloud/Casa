@@ -1,5 +1,7 @@
 package com.example.rexv666480.oddoventas;
 
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,9 +10,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoPedidoVenta;
+import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoProducto;
+import com.example.rexv666480.oddoventas.Entidades.Cliente;
+import com.example.rexv666480.oddoventas.Entidades.Producto;
 import com.example.rexv666480.oddoventas.Pages.PagePedidoVentaProducto;
 import com.example.rexv666480.oddoventas.Pages.PagePedivoVentaCliente;
 
@@ -33,7 +42,10 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    private  ViewPagerAdapter adapter;
+    private NuevoPedidoVenta nuevoPedidoVenta;
 
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +53,13 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         try {
             setSupportActionBar(toolbar);
-
+            context = this;
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+            nuevoPedidoVenta = new NuevoPedidoVenta();
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
+
         }catch (Exception ex)
         {
             ex.printStackTrace();
@@ -55,11 +68,95 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
 
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+    private void setupViewPager(final ViewPager viewPager) {
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PagePedivoVentaCliente(), "Infomación Cliente");
         adapter.addFragment(new PagePedidoVentaProducto(), "Producto Agregados");
         viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Fragment f  = adapter.getItem(position);
+                if(f.getView() != null)
+                {
+                    Button btnAgregar = (Button) f.getView().findViewById(R.id.btnAgregarProducto);
+                    if(btnAgregar != null)
+                    {
+
+                        btnAgregar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PagePedivoVentaCliente fp = (PagePedivoVentaCliente) adapter.getItem(viewPager.getCurrentItem());
+                                if( ((Cliente)(fp.getCbClientes().getSelectedItem())).getId() == -1 ) {
+                                    Snackbar.make(v, "Seleccione un cliente", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    return;
+                                }
+
+                                if( ((Producto)(fp.getCbProductos().getSelectedItem())).getId() == -1 ) {
+                                    Snackbar.make(v, "Seleccione un producto", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    return;
+                                }
+
+                                if( TextUtils.isEmpty(fp.getTxtCantidadPedido().getText().toString())) {
+                                    Snackbar.make(v, "Especifique una cantidad.", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    return;
+                                }
+
+                                if( TextUtils.isEmpty(fp.getTxtPrecioUnitario().getText().toString())) {
+                                    Snackbar.make(v, "Especifique un precio.", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    return;
+                                }
+
+                                if( TextUtils.isEmpty(fp.getTxtDescuento().getText().toString())) {
+                                    Snackbar.make(v, "Especifique un descuento.", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    return;
+                                }
+
+                                AgregarProducto(fp);
+                            }
+                        });
+
+                    }
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Log.d("2","2");
+            }
+        });
+    }
+
+    public  void AgregarProducto(PagePedivoVentaCliente fp)
+    {
+        try {
+
+            NuevoProducto nuevoProducto = new NuevoProducto();
+            nuevoProducto.setCantidadPedido(Double.parseDouble(fp.getTxtCantidadPedido().getText().toString()));
+            nuevoProducto.setDescuento(Double.parseDouble(fp.getTxtDescuento().getText().toString()));
+            nuevoProducto.setPrecioUnitario(Double.parseDouble(fp.getTxtPrecioUnitario().getText().toString()));
+            nuevoProducto.setSubtotal(Double.parseDouble(fp.getTxtSubTotal().getText().toString()));
+            nuevoProducto.setIdProducto(((Producto)(fp.getCbProductos().getSelectedItem())).getId());
+            nuevoProducto.setDescripcionProducto(((Producto)(fp.getCbProductos().getSelectedItem())).getName());
+            this.nuevoPedidoVenta.getProductos().add(nuevoProducto);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

@@ -40,6 +40,11 @@ public class Producto {
         this.unidadMedida = unidadMedida;
     }
 
+    public Producto( int id,String name) {
+        this.name = name;
+        this.id = id;
+    }
+
     public Producto() {
     }
 
