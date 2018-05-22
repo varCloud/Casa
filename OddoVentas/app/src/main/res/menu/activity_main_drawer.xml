@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_pedidos_venta"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Peidos de Ventas" />
+            android:title="Pedidos de Ventas" />
         <item
             android:id="@+id/nav_clientes"
             android:icon="@drawable/ic_menu_gallery"
@@ -17,9 +17,10 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Configuración" />
     </group>
 
+    <!--
     <item android:title="Communicate">
         <menu>
             <item
@@ -32,5 +33,5 @@
                 android:title="Send" />
         </menu>
     </item>
-
+    -->
 </menu>

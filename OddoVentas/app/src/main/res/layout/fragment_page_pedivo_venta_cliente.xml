@@ -85,7 +85,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/textView4"
@@ -133,7 +134,7 @@
                         android:inputType="date" />
 
                     <View
-                        style="@style/Divider"
+                        style="@style/DividerBlanco"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp" />
@@ -183,16 +184,11 @@
                         android:text="Precio Unitario" />
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" />
-
                     <EditText
                         android:id="@+id/txtPrecioUnitario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+
                         android:inputType="numberDecimal" />
 
                     <View
@@ -243,10 +239,10 @@
                         android:text="Descuento (%)" />
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/txtDescuento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+
                         android:inputType="numberDecimal" />
 
                     <View
@@ -273,7 +269,7 @@
                         android:id="@+id/txtSubTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+
                         android:inputType="numberDecimal" />
 
                     <View

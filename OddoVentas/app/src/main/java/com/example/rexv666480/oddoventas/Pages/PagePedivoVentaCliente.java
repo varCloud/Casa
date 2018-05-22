@@ -9,12 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.ScrollingTabContainerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.rexv666480.oddoventas.Adapters.AdapterClientes;
@@ -63,6 +67,19 @@ public class PagePedivoVentaCliente extends Fragment  {
 
     @BindView(R.id.btnAgregarProducto)
     Button btnAgregarProducto;
+
+    @BindView(R.id.txtPrecioUnitario)
+    EditText txtPrecioUnitario;
+
+    @BindView(R.id.txtDescuento)
+    EditText txtDescuento;
+
+    @BindView(R.id.txtSubTotal)
+    EditText txtSubTotal;
+
+    @BindView(R.id.txtCantidadPedido)
+    EditText txtCantidadPedido;
+
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -122,6 +139,7 @@ public class PagePedivoVentaCliente extends Fragment  {
             odoo = new OdooConect();
             loading = new Loading(getContext());
             ObtenerClientes();
+            InitTextChange();
 
             btnAgregarProducto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -361,6 +379,84 @@ public class PagePedivoVentaCliente extends Fragment  {
         };
 
         asyncTask.execute();
+    }
+
+    public  void InitTextChange()
+    {
+        txtDescuento.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                CalcularSubtotal();
+
+            }
+        });
+
+        txtPrecioUnitario.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                CalcularSubtotal();
+
+            }
+        });
+
+        txtCantidadPedido.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                CalcularSubtotal();
+
+            }
+        });
+    }
+
+    public  void CalcularSubtotal()
+    {
+        try {
+            if (! TextUtils.isEmpty(txtCantidadPedido.getText()) &&
+                    ! TextUtils.isEmpty(txtPrecioUnitario.getText()) &&
+                    ! TextUtils.isEmpty(txtDescuento.getText())) {
+                Double canitdadXpedido = Double.parseDouble(txtCantidadPedido.getText().toString()) * Double.parseDouble(txtPrecioUnitario.getText().toString());
+                if (canitdadXpedido > 0) {
+                    Double descuento = canitdadXpedido * (Double.parseDouble(txtDescuento.getText().toString()) / 100);
+                    canitdadXpedido = canitdadXpedido - descuento;
+                    txtSubTotal.setText(canitdadXpedido.toString());
+
+                }
+
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 
 

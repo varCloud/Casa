@@ -21,6 +21,25 @@ public class Producto {
     private Object[] product_tmpl_id;
     private Boolean active;
 
+    private  Impuesto impuesto;
+    private UnidadMedida unidadMedida;
+
+    public Impuesto getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto = impuesto;
+    }
+
+    public UnidadMedida getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(UnidadMedida unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+
     public Producto() {
     }
 

@@ -45,6 +45,7 @@
     </style>
     <style name="DividerBlanco" >
         <item name="android:background">@color/colorBlanco</item>
+        <item name="android:visibility">@integer/view_gone</item>
     </style>
 
 </resources>
