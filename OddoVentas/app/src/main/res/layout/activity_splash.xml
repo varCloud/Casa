@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rexv666480.oddoventas.SplashActivity"
+    >
+
+        <FrameLayout
+            android:id="@+id/card_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            >
+
+            <ImageView
+                android:id="@+id/imageGris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logo_odoog_72" />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/card_front"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageRosa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo_odoo72" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/card_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            >
+
+            <ImageView
+                android:id="@+id/imageO3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logo_odo_c_192"
+                android:visibility="gone"
+                />
+
+        </FrameLayout>
+
+
+</FrameLayout>

@@ -1,7 +1,12 @@
 package com.example.rexv666480.oddoventas.Odoo;
 
+import android.util.Log;
+
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
+import com.example.rexv666480.oddoventas.Entidades.Impuesto;
 import com.example.rexv666480.oddoventas.Entidades.Producto;
+import com.example.rexv666480.oddoventas.Entidades.TemplateProducto;
+import com.example.rexv666480.oddoventas.Entidades.UnidadMedida;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +96,20 @@ public class OdooUtil {
 
     public  static List<Producto> ObtenerProductos(Object result)
     {
-
+/*
+        private String default_code;
+        private String name;
+        private int id;
+        private Object[] attribute_value_ids;
+        private Double lst_price;
+        private Double price;
+        private Double qty_available;
+        private Double virtual_available;
+        private Object[] uom_id;
+        private Boolean barcode;
+        private Object[] product_tmpl_id;
+        private Boolean active;
+*/
         List<Producto> productos = null;
         try{
             Object[] objects = (Object[]) result;
@@ -101,16 +119,17 @@ public class OdooUtil {
                 for (Object object : objects) {
                     producto = new Producto();
                     producto.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
-                    producto.setCurrency_id(OdooUtil.getTupla((Map<String, Object>) object, "currency_id"));
-                    producto.setProduct_variant_count(OdooUtil.getString((Map<String, Object>) object, "product_variant_count"));
-                    producto.setLst_price(OdooUtil.getDouble((Map<String, Object>) object, "lst_price"));
-                    producto.setQty_available(OdooUtil.getDouble((Map<String, Object>) object, "qty_available"));
-                    producto.setType(OdooUtil.getString((Map<String, Object>) object, "type"));
-                    producto.setProduct_variant_ids(OdooUtil.getString((Map<String, Object>) object, "product_variant_ids"));
-                    producto.setImage_small(OdooUtil.getString((Map<String, Object>) object, "image_small"));
-                    producto.setUom_id(OdooUtil.getTupla((Map<String, Object>) object, "uom_id"));
                     producto.setDefault_code(OdooUtil.getString((Map<String, Object>) object, "default_code"));
-                    producto.set__last_update(OdooUtil.getString((Map<String, Object>) object, "__last_update"));
+                    producto.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    producto.setAttribute_value_ids(OdooUtil.getTupla((Map<String, Object>) object, "attribute_value_ids"));
+                    producto.setLst_price(OdooUtil.getDouble((Map<String, Object>) object, "lst_price"));
+                    producto.setPrice(OdooUtil.getDouble((Map<String, Object>) object, "price"));
+                    producto.setQty_available(OdooUtil.getDouble((Map<String, Object>) object, "qty_available"));
+                    producto.setVirtual_available(OdooUtil.getDouble((Map<String, Object>) object, "virtual_available"));
+                    producto.setUom_id(OdooUtil.getTupla((Map<String, Object>) object, "uom_id"));
+                    producto.setBarcode(OdooUtil.getBoolean((Map<String, Object>) object, "barcode"));
+                    producto.setProduct_tmpl_id(OdooUtil.getTupla((Map<String, Object>) object, "product_tmpl_id"));
+                    producto.setActive(OdooUtil.getBoolean((Map<String,Object>) object,"active"));
                     productos.add(producto);
                 }
             }
@@ -119,5 +138,116 @@ public class OdooUtil {
             ex.printStackTrace();
         }
         return  productos;
+    }
+
+    public  static List<TemplateProducto> ObtenerTemplateProductos(Object result)
+    {
+/*
+    private String name;
+    private Object[] currency_id;
+    private String product_variant_count;
+    private Double lst_price;
+    private Double qty_available;
+    private String type;
+    private String product_variant_ids;
+    private String image_small;
+    private Object[] uom_id;
+    private String default_code;
+    private String __last_update;
+
+*/
+        List<TemplateProducto> productos = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                productos = new ArrayList<>();
+                TemplateProducto producto;
+                for (Object object : objects) {
+                    producto = new TemplateProducto();
+                    producto.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
+                    producto.setDefault_code(OdooUtil.getString((Map<String, Object>) object, "default_code"));
+                    //producto.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    producto.setCurrency_id(OdooUtil.getTupla((Map<String, Object>) object, "currency_id"));
+                    producto.setLst_price(OdooUtil.getDouble((Map<String, Object>) object, "lst_price"));
+                    producto.setQty_available(OdooUtil.getDouble((Map<String, Object>) object, "qty_available"));
+                    producto.setType(OdooUtil.getString((Map<String, Object>) object, "type"));
+                    producto.setProduct_variant_ids(OdooUtil.getString((Map<String, Object>) object, "product_variant_ids"));
+                    producto.setImage_small(OdooUtil.getString((Map<String, Object>) object, "image_small"));
+                    producto.setUom_id(OdooUtil.getTupla((Map<String, Object>) object, "uom_id"));
+                    producto.setDefault_code(OdooUtil.getString((Map<String, Object>) object, "default_code"));
+                    producto.set__last_update(OdooUtil.getString((Map<String,Object>) object,"__last_update"));
+                    productos.add(producto);
+                }
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return  productos;
+    }
+
+    public  static List<UnidadMedida> ObtenerUnidadesMedida(Object result)
+    {
+        /*
+            private String display_name;
+            private Integer id;
+            private Object[]  category_id;
+            private String name;
+
+        */
+        List<UnidadMedida> unidadesMedida = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                unidadesMedida = new ArrayList<>();
+                UnidadMedida unidadMedida;
+                for (Object object : objects) {
+                    unidadMedida = new UnidadMedida();
+                    unidadMedida.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    unidadMedida.setCategory_id(OdooUtil.getTupla((Map<String, Object>) object, "category_id"));
+                    unidadMedida.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    unidadMedida.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
+                    unidadesMedida.add(unidadMedida);
+                }
+            }
+        }catch (Exception ex)
+        {
+            Log.d("errores: ",ex.getMessage());
+        }
+        return  unidadesMedida;
+    }
+
+
+    public  static List<Impuesto> ObtenerImpuestos(Object result)
+    {
+        /*
+            private  Integer id;
+            private String display_name;
+            private String description;
+            private Double amount;
+            private String amount_type;
+
+        */
+        List<Impuesto> impuestos = null;
+        try{
+            Object[] objects = (Object[]) result;
+            if (objects.length > 0) {
+                impuestos = new ArrayList<>();
+                Impuesto impuesto;
+                for (Object object : objects) {
+                    impuesto = new Impuesto();
+                    impuesto.setId(OdooUtil.getInteger((Map<String, Object>) object, "id"));
+                    impuesto.setAmount(OdooUtil.getDouble((Map<String, Object>) object, "amount"));
+                    impuesto.setAmount_type(OdooUtil.getString((Map<String, Object>) object, "amount_type"));
+                    impuesto.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
+                    impuesto.setDescription(OdooUtil.getString((Map<String, Object>) object, "description"));
+                    impuestos.add(impuesto);
+                }
+            }
+        }catch (Exception ex)
+        {
+            Log.d("errores: ",ex.getMessage());
+        }
+        return  impuestos;
     }
 }
