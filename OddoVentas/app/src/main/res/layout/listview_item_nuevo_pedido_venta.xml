@@ -14,68 +14,77 @@
 
         <ImageView
             android:id="@+id/imageNuevoPedidoVenta"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            app:srcCompat="@drawable/usuario"
-            android:layout_weight="10"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="10"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/baseline_block_black_48" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
-            android:layout_weight="40"
+            android:layout_weight="50"
+            android:layout_gravity="center"
             >
 
             <TextView
-                android:id="@+id/txtSubTotal"
+                android:id="@+id/txtSubTotalNP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SubTotal"
                 android:textColor="@color/colorNegro" />
 
             <TextView
-                android:id="@+id/txtCantidadPedido"
+                android:id="@+id/txtCantidadPedidoNP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Cantidad" />
 
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="30"
+            android:layout_gravity="center"
+            >
             <TextView
-                android:id="@+id/txtPrecioUnitario"
+                android:id="@+id/txtPrecioUnitarioNP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Precio Unitario" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="40"
-            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtUnidadMedida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unidad de Medida"
-                android:textColor="@color/colorNegro" />
-
-            <TextView
-                android:id="@+id/txtImpuesto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Impuesto" />
-
-            <TextView
-                android:id="@+id/txtDescuento"
+                android:id="@+id/txtDescuentoNP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Descuento" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:id="@+id/imageEliminaPedidoVenta"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/outline_delete_forever_black_48" />
+
         </LinearLayout>
 
     </LinearLayout>

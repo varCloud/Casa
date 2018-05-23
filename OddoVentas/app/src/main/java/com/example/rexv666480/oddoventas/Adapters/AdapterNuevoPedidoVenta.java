@@ -32,23 +32,18 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
     @BindView(R.id.imageNuevoPedidoVenta)
     ImageView imageNuevoPedidoVenta;
 
-    @BindView(R.id.txtSubTotal)
-    TextView txtSubTotal;
+    @BindView(R.id.txtSubTotalNP)
+    TextView txtSubTotalNP;
 
-    @BindView(R.id.txtPrecioUnitario)
-    EditText txtPrecioUnitario;
+    @BindView(R.id.txtPrecioUnitarioNP)
+    TextView txtPrecioUnitarioNP;
 
-    @BindView(R.id.txtDescuento)
-    EditText txtDescuento;
+    @BindView(R.id.txtDescuentoNP)
+    TextView txtDescuentoNP;
 
-    @BindView(R.id.txtCantidadPedido)
-    EditText txtCantidadPedido;
+    @BindView(R.id.txtCantidadPedidoNP)
+    TextView txtCantidadPedidoNP;
 
-    @BindView(R.id.txtImpuesto)
-    EditText txtImpuesto;
-
-    @BindView(R.id.txtUnidadMedida)
-    EditText txtUnidadMedida;
 
 
 
@@ -82,15 +77,15 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.listview_item_productos, null);
+            v = inf.inflate(R.layout.listview_item_nuevo_pedido_venta, null);
         }
         try {
             ButterKnife.bind(this,v);
             NuevoProducto c = items.get(position);
-            /*txtAmano.setText("A mano: $"+c.getQty_available().toString()+" Unidad(es)");
-            txtPrecio.setText("Precio: $"+c.getLst_price().toString());
-            txtNombreProducto.setText(c.getName());
-            */
+            txtCantidadPedidoNP .setText("Cantidad: "+c.getCantidadPedido().toString()+" "+c.getUnidadDeMedidaDescripcion());
+            txtDescuentoNP.setText("Descuento: "+c.getDescuento().toString());
+            txtSubTotalNP.setText("Subtotal: "+c.getSubtotal().toString());
+            txtPrecioUnitarioNP.setText("Precio Unitario: "+c.getDescripcionProducto());
             if (c.getImage_small() != null) {
                 if(!c.getImage_small().equals("")) {
                     byte[] data = Base64.decode(c.getImage_small(), Base64.DEFAULT);

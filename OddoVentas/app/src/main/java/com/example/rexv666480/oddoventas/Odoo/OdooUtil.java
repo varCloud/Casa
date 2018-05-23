@@ -132,6 +132,7 @@ public class OdooUtil {
                     producto.setBarcode(OdooUtil.getBoolean((Map<String, Object>) object, "barcode"));
                     producto.setProduct_tmpl_id(OdooUtil.getTupla((Map<String, Object>) object, "product_tmpl_id"));
                     producto.setActive(OdooUtil.getBoolean((Map<String,Object>) object,"active"));
+                    producto.setImage_small(OdooUtil.getString((Map<String,Object>) object,"Image_small"));
                     productos.add(producto);
                 }
             }
@@ -209,6 +210,10 @@ public class OdooUtil {
                     unidadMedida.setCategory_id(OdooUtil.getTupla((Map<String, Object>) object, "category_id"));
                     unidadMedida.setDisplay_name(OdooUtil.getString((Map<String, Object>) object, "display_name"));
                     unidadMedida.setName(OdooUtil.getString((Map<String, Object>) object, "name"));
+                    if(unidadMedida.getId() == 2)
+                        unidadMedida.setDisplay_name("Docena(s)");
+                    if(unidadMedida.getId() == 1)
+                        unidadMedida.setDisplay_name("Unidad(s)");
                     unidadesMedida.add(unidadMedida);
                 }
             }

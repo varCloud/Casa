@@ -16,7 +16,7 @@
             android:id="@+id/imageCliente"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:srcCompat="@drawable/usuario"
+            app:srcCompat="@drawable/baseline_block_black_48"
             android:layout_weight="8"/>
 
         <LinearLayout

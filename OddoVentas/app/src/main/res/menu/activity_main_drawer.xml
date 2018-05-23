@@ -4,11 +4,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_pedidos_venta"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/outline_assignment_black_48"
             android:title="Pedidos de Ventas" />
         <item
             android:id="@+id/nav_clientes"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/outline_accessibility_new_black_48"
             android:title="Clientes" />
         <item
             android:id="@+id/nav_productos"

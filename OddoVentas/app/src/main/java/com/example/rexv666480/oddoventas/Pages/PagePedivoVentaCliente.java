@@ -138,15 +138,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         return txtCantidadPedido;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PagePedivoVentaCliente.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static PagePedivoVentaCliente newInstance(String param1, String param2) {
         PagePedivoVentaCliente fragment = new PagePedivoVentaCliente();
         Bundle args = new Bundle();
@@ -284,7 +276,8 @@ public class PagePedivoVentaCliente extends Fragment  {
                                 "uom_id",
                                 "barcode",
                                 "product_tmpl_id",
-                                "active"));
+                                "active",
+                                "image_small"));
                         /*put("limit", 5);*/
                     }};
 

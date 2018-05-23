@@ -1,5 +1,6 @@
 package com.example.rexv666480.oddoventas;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -14,8 +15,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.rexv666480.oddoventas.Adapters.AdapterClientes;
+import com.example.rexv666480.oddoventas.Adapters.AdapterNuevoPedidoVenta;
 import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoPedidoVenta;
 import com.example.rexv666480.oddoventas.Entidades.AgregarPedidoVenta.NuevoProducto;
 import com.example.rexv666480.oddoventas.Entidades.Cliente;
@@ -46,6 +50,7 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
     private NuevoPedidoVenta nuevoPedidoVenta;
 
     private Context context;
+    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
         try {
             setSupportActionBar(toolbar);
             context = this;
+            activity = this;
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             nuevoPedidoVenta = new NuevoPedidoVenta();
@@ -80,39 +86,40 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
                 Fragment f  = adapter.getItem(position);
                 if(f.getView() != null)
                 {
-                    Button btnAgregar = (Button) f.getView().findViewById(R.id.btnAgregarProducto);
-                    if(btnAgregar != null)
+                    if(position == 0)
                     {
+                    Button btnAgregar = (Button) f.getView().findViewById(R.id.btnAgregarProducto);
+                    if (btnAgregar != null) {
 
                         btnAgregar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 PagePedivoVentaCliente fp = (PagePedivoVentaCliente) adapter.getItem(viewPager.getCurrentItem());
-                                if( ((Cliente)(fp.getCbClientes().getSelectedItem())).getId() == -1 ) {
+                                if (((Cliente) (fp.getCbClientes().getSelectedItem())).getId() == -1) {
                                     Snackbar.make(v, "Seleccione un cliente", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     return;
                                 }
 
-                                if( ((Producto)(fp.getCbProductos().getSelectedItem())).getId() == -1 ) {
+                                if (((Producto) (fp.getCbProductos().getSelectedItem())).getId() == -1) {
                                     Snackbar.make(v, "Seleccione un producto", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     return;
                                 }
 
-                                if( TextUtils.isEmpty(fp.getTxtCantidadPedido().getText().toString())) {
+                                if (TextUtils.isEmpty(fp.getTxtCantidadPedido().getText().toString())) {
                                     Snackbar.make(v, "Especifique una cantidad.", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     return;
                                 }
 
-                                if( TextUtils.isEmpty(fp.getTxtPrecioUnitario().getText().toString())) {
+                                if (TextUtils.isEmpty(fp.getTxtPrecioUnitario().getText().toString())) {
                                     Snackbar.make(v, "Especifique un precio.", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     return;
                                 }
 
-                                if( TextUtils.isEmpty(fp.getTxtDescuento().getText().toString())) {
+                                if (TextUtils.isEmpty(fp.getTxtDescuento().getText().toString())) {
                                     Snackbar.make(v, "Especifique un descuento.", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     return;
@@ -122,6 +129,18 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
                             }
                         });
 
+                    }
+                }else
+                    {
+                        PagePedidoVentaProducto fp = (PagePedidoVentaProducto) adapter.getItem(viewPager.getCurrentItem());
+                        if(fp.getView() !=null)
+                        {
+                            if(nuevoPedidoVenta.getProductos().size() > 0) {
+                                fp.productoList = nuevoPedidoVenta.getProductos();
+                                adapter.notifyDataSetChanged();
+                                viewPager.setCurrentItem(position);
+                            }
+                        }
                     }
                 }
             }
@@ -149,6 +168,7 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
             nuevoProducto.setSubtotal(Double.parseDouble(fp.getTxtSubTotal().getText().toString()));
             nuevoProducto.setIdProducto(((Producto)(fp.getCbProductos().getSelectedItem())).getId());
             nuevoProducto.setDescripcionProducto(((Producto)(fp.getCbProductos().getSelectedItem())).getName());
+            nuevoProducto.setImage_small(((Producto)(fp.getCbProductos().getSelectedItem())).getImage_small());
             this.nuevoPedidoVenta.getProductos().add(nuevoProducto);
         }
         catch (Exception ex)
@@ -180,6 +200,17 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            if (object instanceof PagePedidoVentaProducto) {
+                PagePedidoVentaProducto f = (PagePedidoVentaProducto) object;
+                if (f != null) {
+                    f.update();
+                }
+            }
+            return super.getItemPosition(object);
         }
 
         @Override
