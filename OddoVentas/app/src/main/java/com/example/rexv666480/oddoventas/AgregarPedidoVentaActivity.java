@@ -13,8 +13,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,10 +61,10 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_pedido_venta);
         ButterKnife.bind(this);
         try {
-            setSupportActionBar(toolbar);
             context = this;
             activity = this;
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             nuevoPedidoVenta = new NuevoPedidoVenta();
             setupViewPager(viewPager);
@@ -73,6 +77,8 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
 
 
     }
+
+
 
     private void setupViewPager(final ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -139,6 +145,10 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
                                 fp.productoList = nuevoPedidoVenta.getProductos();
                                 adapter.notifyDataSetChanged();
                                 viewPager.setCurrentItem(position);
+                            }else
+                            {
+                                adapter.notifyDataSetChanged();
+                                viewPager.setCurrentItem(position);
                             }
                         }
                     }
@@ -147,12 +157,12 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                Log.d("onPageSelected","onPageSelected");
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d("2","2");
+                Log.d("onPageScrollStateChange","onPageScrollStateChanged");
             }
         });
     }

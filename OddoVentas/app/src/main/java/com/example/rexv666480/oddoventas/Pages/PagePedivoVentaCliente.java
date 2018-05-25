@@ -14,6 +14,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -151,6 +153,7 @@ public class PagePedivoVentaCliente extends Fragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -200,6 +203,18 @@ public class PagePedivoVentaCliente extends Fragment  {
         return v;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        try {
+            inflater.inflate(R.menu.main, menu);
+            menu.findItem(R.id.action_delete).setVisible(true);
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+    }
 
     ///////////////////////////////////////////////////CARGA DE INFORMACION POR DEFAULT//////////////////////////////////////////////////////////////////////////
     private void ObtenerClientes()

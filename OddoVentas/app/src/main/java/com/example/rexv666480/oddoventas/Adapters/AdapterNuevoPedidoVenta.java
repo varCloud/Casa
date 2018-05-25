@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,6 +19,7 @@ import com.example.rexv666480.oddoventas.Entidades.Cliente;
 import com.example.rexv666480.oddoventas.Entidades.TemplateProducto;
 import com.example.rexv666480.oddoventas.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -44,16 +46,34 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
     @BindView(R.id.txtCantidadPedidoNP)
     TextView txtCantidadPedidoNP;
 
+    @BindView(R.id.txtDescripcionProducto)
+    TextView txtDescripcionProducto;
+
+    @BindView(R.id.imageEliminaPedidoVenta)
+    ImageView imageEliminaPedidoVenta;
+
+
 
 
 
     protected Activity activity;
     protected List<NuevoProducto> items;
+    private List<View> listSelectedRows;
+    private List<NuevoProducto> listPersonsSelected ;
 
+    public List<NuevoProducto> getListPersonsSelected() {
+        return listPersonsSelected;
+    }
+
+    public void setListPersonsSelected(List<NuevoProducto> listPersonsSelected) {
+        this.listPersonsSelected = listPersonsSelected;
+    }
 
     public AdapterNuevoPedidoVenta(Activity activity, List<NuevoProducto> items) {
         this.activity = activity;
         this.items = items;
+        listPersonsSelected = new ArrayList<>();
+        listSelectedRows = new ArrayList<>();
     }
 
     @Override
@@ -85,7 +105,8 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
             txtCantidadPedidoNP .setText("Cantidad: "+c.getCantidadPedido().toString()+" "+c.getUnidadDeMedidaDescripcion());
             txtDescuentoNP.setText("Descuento: "+c.getDescuento().toString());
             txtSubTotalNP.setText("Subtotal: "+c.getSubtotal().toString());
-            txtPrecioUnitarioNP.setText("Precio Unitario: "+c.getDescripcionProducto());
+            txtPrecioUnitarioNP.setText("Precio Unitario: "+c.getPrecioUnitario());
+            txtDescripcionProducto.setText(c.getDescripcionProducto());
             if (c.getImage_small() != null) {
                 if(!c.getImage_small().equals("")) {
                     byte[] data = Base64.decode(c.getImage_small(), Base64.DEFAULT);
@@ -93,10 +114,33 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
                     imageNuevoPedidoVenta.setImageBitmap(bitmap);
                 }
             }
+            imageEliminaPedidoVenta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }catch (Exception ex)
         {
             ex.printStackTrace();
         }
         return  v;
+    }
+
+    public void handleLongPress(int position, View view) {
+        try {
+            if (listSelectedRows.contains(view)) {
+                listSelectedRows.remove(view);
+                listPersonsSelected.remove(items.get(position));
+                view.setBackgroundResource(R.color.colorWhite);
+            } else {
+                listPersonsSelected.add(items.get(position));
+                listSelectedRows.add(view);
+                view.setBackgroundResource(R.color.colorDarkGray);
+            }
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }

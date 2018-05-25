@@ -26,7 +26,7 @@
             android:theme="@style/AppTheme" />
 
         <activity android:name=".ProductosActivity" />
-        <activity android:name=".PedidoVentasActivity" />
+        <activity android:name=".PedidoVentasActivity"  />
 
         <activity android:name=".AgregarPedidoVentaActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

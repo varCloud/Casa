@@ -19,4 +19,8 @@
     <color name="colorVerde">#2E7D32</color>
     <color name="colorVerde1">#1B5E20</color>
     <color name="colorRosa">#004D40</color>
+
+    <color name="colorDarkGray">#818080</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 </resources>

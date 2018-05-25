@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.rexv666480.oddoventas.Pages.PagePedidoVentaProducto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -18,9 +18,39 @@
         <ListView
             android:id="@+id/LvNuevoPedidoVenta"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
         ></ListView>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/botonesGurdar"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnGuadarPV"
+                style="@style/GreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/contenedor"
+                android:text="Finalizar Pedido"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlanco" />
+
+            <View
+                style="@style/DividerBlanco"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
