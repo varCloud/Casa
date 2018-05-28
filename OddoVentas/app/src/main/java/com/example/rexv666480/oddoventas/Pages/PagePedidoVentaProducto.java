@@ -90,7 +90,7 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
         try {
             inflater.inflate(R.menu.main, menu);
             menuItemDelete = menu.findItem(R.id.action_delete);
-            //menuItemDelete.setVisible(false);
+            menuItemDelete.setVisible(false);
 
         } catch (Exception ex) {
             ex.printStackTrace();

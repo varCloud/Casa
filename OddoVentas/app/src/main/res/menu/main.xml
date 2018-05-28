@@ -9,6 +9,6 @@
 
     <item android:id="@+id/action_delete"
         android:title=""
-        android:icon="@drawable/outline_delete_forever_black_48"
+        android:icon="@drawable/baseline_delete_forever_white_48"
         app:showAsAction="collapseActionView|always"/>
 </menu>
