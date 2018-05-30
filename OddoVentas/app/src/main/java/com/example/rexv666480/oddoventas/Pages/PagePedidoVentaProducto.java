@@ -116,7 +116,7 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
         try {
             setHasOptionsMenu(true);
             if (productoList != null) {
-                 adapterNP = new AdapterNuevoPedidoVenta(getActivity(), productoList);
+                adapterNP = new AdapterNuevoPedidoVenta(getActivity(), productoList);
                 LvNuevoPedidoVenta.setAdapter(adapterNP);
                 LvNuevoPedidoVenta.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
@@ -131,7 +131,12 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
                     }
                 });
             } else {
-                showDeleteMenu(false);
+                if(adapterNP != null)
+                {
+                    adapterNP.RemoveAllItems();
+                    adapterNP.notifyDataSetChanged();
+                }
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();

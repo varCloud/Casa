@@ -105,7 +105,7 @@ public class PedidoVentasActivity extends AppCompatActivity {
 
                     Map<String, List> filtros = new HashMap() {{
                         put("fields", asList("message_needaction", "name", "date_order", "partner_id", "user_id", "amount_total", "currency_id", "invoice_status", "state"));
-                        put("limit", 5);
+                        put("limit", 15);
                     }};
                     result = odoo.getXmlClienteObject().call("execute_kw", odoo.getDb(), user_id, odoo.getPassword(), "sale.order", "search_read", conditions, filtros);
 

@@ -49,13 +49,6 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
     @BindView(R.id.txtDescripcionProducto)
     TextView txtDescripcionProducto;
 
-    @BindView(R.id.imageEliminaPedidoVenta)
-    ImageView imageEliminaPedidoVenta;
-
-
-
-
-
     protected Activity activity;
     protected List<NuevoProducto> items;
     private List<View> listSelectedRows;
@@ -114,12 +107,6 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
                     imageNuevoPedidoVenta.setImageBitmap(bitmap);
                 }
             }
-            imageEliminaPedidoVenta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }catch (Exception ex)
         {
             ex.printStackTrace();
@@ -146,10 +133,14 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
 
     public void removeSelectedPersons(){
         items.removeAll(listPersonsSelected);
-        //listPersonsFilter.removeAll(listPersonsSelected);
         listPersonsSelected.clear();
         for(View view : listSelectedRows)
             view.setBackgroundResource(R.color.colorWhite);
         listSelectedRows.clear();
+    }
+
+    public  void RemoveAllItems()
+    {
+        items.clear();
     }
 }

@@ -299,25 +299,11 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView111"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SubTotal" />
-
-                <EditText
-                    android:id="@+id/txtSubTotal1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:inputType="numberDecimal" />
-
                 <View
                     style="@style/DividerBlanco"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp" />
-
 
             </LinearLayout>
 
