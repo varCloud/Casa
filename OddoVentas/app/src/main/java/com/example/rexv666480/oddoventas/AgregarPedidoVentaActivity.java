@@ -131,7 +131,16 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
                                     return;
                                 }
 
-                                AgregarProducto(fp);
+                                if(AgregarProducto(fp)) {
+                                    Snackbar snakc = Snackbar.make(v, "Producto Agregado ", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null);
+                                    View sbView = snakc.getView();
+                                    sbView.setBackgroundColor(getResources().getColor(R.color.colorMoradoOddo));
+                                    snakc.show();
+                                    fp.ResetFormulario();
+                                    fp.getCbClientes().setEnabled(false);
+                                }
+
                             }
                         });
 
@@ -141,6 +150,14 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
                         PagePedidoVentaProducto fp = (PagePedidoVentaProducto) adapter.getItem(viewPager.getCurrentItem());
                         if(fp.getView() !=null)
                         {
+                            Button btnGuadarPV = (Button) f.getView().findViewById(R.id.btnGuadarPV);
+                            btnGuadarPV.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    
+                                }
+                            });
+
                             if(nuevoPedidoVenta.getProductos().size() > 0) {
                                 fp.productoList = nuevoPedidoVenta.getProductos();
                                 adapter.notifyDataSetChanged();
@@ -167,7 +184,7 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
         });
     }
 
-    public  void AgregarProducto(PagePedivoVentaCliente fp)
+    public  boolean AgregarProducto(PagePedivoVentaCliente fp)
     {
         try {
 
@@ -180,14 +197,15 @@ public class AgregarPedidoVentaActivity extends AppCompatActivity {
             nuevoProducto.setDescripcionProducto(((Producto)(fp.getCbProductos().getSelectedItem())).getName());
             nuevoProducto.setImage_small(((Producto)(fp.getCbProductos().getSelectedItem())).getImage_small());
             this.nuevoPedidoVenta.getProductos().add(nuevoProducto);
+            return  true;
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
         }
-
-
+        return false;
     }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

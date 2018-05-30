@@ -143,4 +143,13 @@ public class AdapterNuevoPedidoVenta extends BaseAdapter {
             ex.printStackTrace();
         }
     }
+
+    public void removeSelectedPersons(){
+        items.removeAll(listPersonsSelected);
+        //listPersonsFilter.removeAll(listPersonsSelected);
+        listPersonsSelected.clear();
+        for(View view : listSelectedRows)
+            view.setBackgroundResource(R.color.colorWhite);
+        listSelectedRows.clear();
+    }
 }

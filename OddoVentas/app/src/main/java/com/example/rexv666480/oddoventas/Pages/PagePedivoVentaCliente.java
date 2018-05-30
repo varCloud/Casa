@@ -208,7 +208,7 @@ public class PagePedivoVentaCliente extends Fragment  {
         // Inflate the menu; this adds items to the action bar if it is present.
         try {
             inflater.inflate(R.menu.main, menu);
-            menu.findItem(R.id.action_delete).setVisible(true);
+            menu.findItem(R.id.action_delete).setVisible(false);
 
         }catch (Exception ex){
             ex.printStackTrace();
@@ -492,7 +492,13 @@ public class PagePedivoVentaCliente extends Fragment  {
             if (! TextUtils.isEmpty(txtCantidadPedido.getText()) &&
                     ! TextUtils.isEmpty(txtPrecioUnitario.getText()) &&
                     ! TextUtils.isEmpty(txtDescuento.getText())) {
-                Double canitdadXpedido = Double.parseDouble(txtCantidadPedido.getText().toString()) * Double.parseDouble(txtPrecioUnitario.getText().toString());
+
+                Double unidadMedida  =1D;
+                if (((UnidadMedida) (cbUnidadMedida.getSelectedItem())).getId() == 2)
+                    unidadMedida = 12D;
+
+
+                Double canitdadXpedido =unidadMedida * Double.parseDouble(txtCantidadPedido.getText().toString()) * Double.parseDouble(txtPrecioUnitario.getText().toString());
                 if (canitdadXpedido > 0) {
                     Double descuento = canitdadXpedido * (Double.parseDouble(txtDescuento.getText().toString()) / 100);
                     canitdadXpedido = canitdadXpedido - descuento;
@@ -507,5 +513,12 @@ public class PagePedivoVentaCliente extends Fragment  {
         }
     }
 
+    public  void ResetFormulario()
+    {
+        txtCantidadPedido.setText("");
+        txtPrecioUnitario.setText("");
+        txtDescuento.setText("");
+        txtSubTotal.setText("");
+    }
 
 }

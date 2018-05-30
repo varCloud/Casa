@@ -44,7 +44,7 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private  AdapterNuevoPedidoVenta adapterNP;
     public List<NuevoProducto> productoList;
 
     @BindView(R.id.LvNuevoPedidoVenta)
@@ -91,6 +91,15 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
             inflater.inflate(R.menu.main, menu);
             menuItemDelete = menu.findItem(R.id.action_delete);
             menuItemDelete.setVisible(false);
+            menuItemDelete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    adapterNP.removeSelectedPersons();
+                    adapterNP.notifyDataSetChanged();
+                    showDeleteMenu(false);
+                    return true;
+                }
+            });
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -107,7 +116,7 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
         try {
             setHasOptionsMenu(true);
             if (productoList != null) {
-                final AdapterNuevoPedidoVenta adapterNP = new AdapterNuevoPedidoVenta(getActivity(), productoList);
+                 adapterNP = new AdapterNuevoPedidoVenta(getActivity(), productoList);
                 LvNuevoPedidoVenta.setAdapter(adapterNP);
                 LvNuevoPedidoVenta.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
@@ -129,4 +138,6 @@ public class PagePedidoVentaProducto extends Fragment implements Updateable {
         }
 
     }
+
+
 }
