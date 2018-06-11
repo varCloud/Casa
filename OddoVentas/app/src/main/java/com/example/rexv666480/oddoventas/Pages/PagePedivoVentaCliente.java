@@ -187,7 +187,10 @@ public class PagePedivoVentaCliente extends Fragment  {
 
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    //ObtenerUnidadMedidas(productos.get(position).getUom_id()[0]);
+                    if(productos != null)
+                    {
+                      txtPrecioUnitario.setText(productos.get(position).getPrice().toString());
+                    }
                 }
 
                 @Override
